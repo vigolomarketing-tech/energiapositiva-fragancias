@@ -337,6 +337,113 @@
     toastTimer = setTimeout(() => toastEl.classList.remove("show"), 2400);
   }
 
+  /* ---------- Menú de navegación ---------- */
+  const navToggle = document.getElementById("navToggle");
+  const mainNav = document.getElementById("mainNav");
+  const navOverlay = document.getElementById("navOverlay");
+
+  function openNav() {
+    navToggle.classList.add("open");
+    navToggle.setAttribute("aria-expanded", "true");
+    navToggle.setAttribute("aria-label", "Cerrar menú");
+    mainNav.classList.add("open");
+    navOverlay.classList.add("open");
+  }
+
+  function closeNav() {
+    navToggle.classList.remove("open");
+    navToggle.setAttribute("aria-expanded", "false");
+    navToggle.setAttribute("aria-label", "Abrir menú");
+    mainNav.classList.remove("open");
+    navOverlay.classList.remove("open");
+  }
+
+  navToggle.addEventListener("click", () => {
+    if (mainNav.classList.contains("open")) closeNav();
+    else openNav();
+  });
+
+  navOverlay.addEventListener("click", closeNav);
+  mainNav.addEventListener("click", (e) => {
+    if (e.target.closest("a")) closeNav();
+  });
+
+  /* ---------- Formulario de revendedores ---------- */
+  const resellerForm = document.getElementById("resellerForm");
+
+  const resellerFields = [
+    { input: document.getElementById("rsName"), error: document.getElementById("rsNameError"), message: "Ingresá tu nombre y apellido." },
+    { input: document.getElementById("rsPhone"), error: document.getElementById("rsPhoneError"), message: "Ingresá un teléfono de contacto." },
+    { input: document.getElementById("rsZone"), error: document.getElementById("rsZoneError"), message: "Contanos tu localidad o zona." },
+  ];
+
+  function setFieldInvalid(field, invalid) {
+    const wrapper = field.input.closest(".field");
+    if (invalid) {
+      wrapper.classList.add("invalid");
+      field.error.textContent = field.message;
+    } else {
+      wrapper.classList.remove("invalid");
+      field.error.textContent = "";
+    }
+  }
+
+  resellerFields.forEach((field) => {
+    field.input.addEventListener("input", () => {
+      if (field.input.value.trim()) setFieldInvalid(field, false);
+    });
+  });
+
+  function validateResellerForm() {
+    let firstInvalid = null;
+    resellerFields.forEach((field) => {
+      const invalid = !field.input.value.trim();
+      setFieldInvalid(field, invalid);
+      if (invalid && !firstInvalid) firstInvalid = field.input;
+    });
+    return firstInvalid;
+  }
+
+  function buildResellerMessage(data) {
+    const lines = [];
+    lines.push("Hola! Quiero sumarme como revendedor de Energía Positiva.");
+    lines.push(`Nombre: ${data.name}`);
+    lines.push(`WhatsApp: ${data.phone}`);
+    lines.push(`Zona: ${data.zone}`);
+    lines.push(`¿Ya vende perfumes?: ${data.selling || "No especifica"}`);
+    lines.push(`Líneas de interés: ${data.lines.length ? data.lines.join(", ") : "No especifica"}`);
+    lines.push(`Mensaje: ${data.message || "-"}`);
+    return lines.join("\n");
+  }
+
+  resellerForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const firstInvalid = validateResellerForm();
+    if (firstInvalid) {
+      firstInvalid.focus();
+      return;
+    }
+
+    const formData = new FormData(resellerForm);
+    const data = {
+      name: formData.get("name").trim(),
+      phone: formData.get("phone").trim(),
+      zone: formData.get("zone").trim(),
+      selling: formData.get("selling"),
+      lines: formData.getAll("lines"),
+      message: formData.get("message").trim(),
+    };
+
+    const message = buildResellerMessage(data);
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank", "noopener");
+
+    resellerForm.reset();
+    resellerFields.forEach((field) => setFieldInvalid(field, false));
+    showToast("¡Consulta enviada por WhatsApp!");
+  });
+
   /* ---------- Scroll reveal ---------- */
   function initReveal() {
     const targets = document.querySelectorAll(".reveal, .reveal-stagger");

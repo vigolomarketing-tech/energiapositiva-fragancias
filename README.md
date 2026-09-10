@@ -1,6 +1,6 @@
 # Energía Positiva — Fragancias que inspiran
 
-Demo web para **Energía Positiva**, marca argentina de perfumes y aromatizadores (Lanús, Buenos Aires).
+Demo web para **Energía Positiva**, marca argentina de perfumes y aromatizadores (José Mármol, Buenos Aires).
 
 Sitio estático (HTML + CSS + JS vanilla, sin frameworks ni build) pensado mobile-first para tráfico de Instagram.
 

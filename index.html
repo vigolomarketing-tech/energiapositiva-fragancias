@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Energía Positiva — Perfumes y Aromatizadores | Lanús, Buenos Aires</title>
-<meta name="description" content="Perfumes árabes, for him, for her, body splash, home sprays y difusores. Fragancias de larga duración, calidad premium a precios accesibles. Lanús, Buenos Aires." />
+<title>Energía Positiva — Perfumes y Aromatizadores | José Mármol, Buenos Aires</title>
+<meta name="description" content="Perfumes árabes, for him, for her, body splash, home sprays y difusores. Fragancias de larga duración, calidad premium a precios accesibles. José Mármol, Buenos Aires." />
 <meta name="theme-color" content="#121110" />
 
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
@@ -24,14 +24,30 @@
       <span class="logo-mark"><span>E+</span></span>
       <span class="logo-wordmark">ENERGÍA POSITIVA<small>Fragancias que inspiran</small></span>
     </a>
+
+    <nav class="main-nav" id="mainNav" aria-label="Navegación principal">
+      <ul class="nav-list">
+        <li><a href="#catalogo">Catálogo</a></li>
+        <li><a href="#mayorista-minorista">Mayorista y Minorista</a></li>
+        <li><a href="#revendedores">Quiero revender</a></li>
+        <li><a href="#tips">Tips</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+
     <div class="header-actions">
       <button class="icon-btn" id="cartBtn" aria-label="Ver carrito">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.5 3h2l2.6 12.4a2 2 0 0 0 2 1.6h8.4a2 2 0 0 0 2-1.6L21 7H6"/></svg>
         <span class="badge" id="cartCount" hidden>0</span>
       </button>
+      <button class="icon-btn nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mainNav">
+        <svg class="icon-burger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
     </div>
   </div>
 </header>
+<div class="nav-overlay" id="navOverlay"></div>
 
 <main id="top">
 
@@ -39,7 +55,7 @@
   <section class="hero">
     <div class="hero-content">
       <span class="logo-mark lg"><span>E+</span></span>
-      <p class="hero-brandline">Energía Positiva · Lanús</p>
+      <p class="hero-brandline">Energía Positiva · José Mármol</p>
       <h1 class="hero-slogan">Fragancias que <em>inspiran</em></h1>
       <p class="hero-copy">Perfumes y aromatizadores de larga duración. Calidad premium a precios accesibles, hechos para acompañarte todo el día.</p>
       <a href="#catalogo" class="btn btn-gold">Ver catálogo</a>
@@ -62,6 +78,92 @@
 
     <div class="container">
       <div class="product-grid reveal-stagger" id="productGrid"></div>
+    </div>
+  </section>
+
+  <!-- ===== Mayorista y Minorista ===== -->
+  <section class="wholesale" id="mayorista-minorista">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Cómo comprar</span>
+        <h2 class="section-title">Mayorista y Minorista</h2>
+        <p class="section-sub">Elegí la modalidad que más se ajuste a vos.</p>
+      </div>
+      <div class="wholesale-grid reveal-stagger">
+        <article class="wholesale-card">
+          <span class="wholesale-tag">Por menor</span>
+          <h3>Venta al público</h3>
+          <ul class="wholesale-list">
+            <li>Compra mínima: 1 unidad</li>
+            <li>Entrega coordinada: retiro o envío</li>
+            <li>Precios de lista</li>
+          </ul>
+          <a href="#catalogo" class="btn btn-dark btn-block">Ver catálogo</a>
+        </article>
+        <article class="wholesale-card wholesale-card--dark">
+          <span class="wholesale-tag">Por mayor</span>
+          <h3>Para revendedores y comercios</h3>
+          <ul class="wholesale-list">
+            <li>Precios especiales por cantidad</li>
+            <li>Ideal para revendedores y comercios</li>
+            <li>Asesoramiento para armar tu stock</li>
+          </ul>
+          <a href="#revendedores" class="btn btn-gold btn-block">Quiero revender</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Quiero revender ===== -->
+  <section class="reseller" id="revendedores">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Trabajá con nosotros</span>
+        <h2 class="section-title">Sumate como revendedor</h2>
+        <p class="section-sub">¿Tenés un local, un emprendimiento o querés arrancar a vender perfumes? Contanos y te asesoramos con precios especiales por mayor.</p>
+      </div>
+
+      <form class="reseller-form reveal" id="resellerForm" novalidate>
+        <div class="field">
+          <label for="rsName">Nombre y apellido</label>
+          <input type="text" id="rsName" name="name" placeholder="Ej: Juan Pérez" required />
+          <span class="field-error" id="rsNameError"></span>
+        </div>
+        <div class="field">
+          <label for="rsPhone">Teléfono / WhatsApp</label>
+          <input type="tel" id="rsPhone" name="phone" placeholder="Ej: 11 2345-6789" required />
+          <span class="field-error" id="rsPhoneError"></span>
+        </div>
+        <div class="field">
+          <label for="rsZone">Localidad o zona</label>
+          <input type="text" id="rsZone" name="zone" placeholder="Ej: José Mármol" required />
+          <span class="field-error" id="rsZoneError"></span>
+        </div>
+        <div class="field">
+          <label for="rsSelling">¿Ya vendés perfumes?</label>
+          <select id="rsSelling" name="selling">
+            <option value="" selected>Elegí una opción</option>
+            <option value="Sí">Sí</option>
+            <option value="No, recién arranco">No, recién arranco</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Qué línea te interesa</label>
+          <div class="checkbox-group">
+            <label class="checkbox-option"><input type="checkbox" name="lines" value="Árabes" /><span>Árabes</span></label>
+            <label class="checkbox-option"><input type="checkbox" name="lines" value="Perfumes" /><span>Perfumes</span></label>
+            <label class="checkbox-option"><input type="checkbox" name="lines" value="Body Splash" /><span>Body Splash</span></label>
+            <label class="checkbox-option"><input type="checkbox" name="lines" value="Home Spray" /><span>Home Spray</span></label>
+            <label class="checkbox-option"><input type="checkbox" name="lines" value="Difusores" /><span>Difusores</span></label>
+          </div>
+        </div>
+        <div class="field">
+          <label for="rsMessage">Mensaje (opcional)</label>
+          <textarea id="rsMessage" name="message" rows="3" placeholder="Contanos un poco más sobre vos..."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-gold btn-block">Enviar consulta por WhatsApp</button>
+      </form>
     </div>
   </section>
 
@@ -141,7 +243,7 @@
           <span class="logo-mark"><span>E+</span></span>
           <span class="logo-wordmark" style="color:var(--bone)">ENERGÍA POSITIVA<small style="color:var(--gold-light)">Fragancias que inspiran</small></span>
         </a>
-        <p>Perfumes y aromatizadores de larga duración. Calidad premium a precios accesibles, desde Lanús para todo el país.</p>
+        <p>Perfumes y aromatizadores de larga duración. Calidad premium a precios accesibles, desde José Mármol para todo el país.</p>
       </div>
       <div class="footer-links">
         <a class="footer-link" href="https://instagram.com/energiapositiva.fragancias" target="_blank" rel="noopener">
@@ -154,7 +256,7 @@
         </a>
         <span class="footer-link">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-7.6 7-12.5A7 7 0 0 0 5 9.5C5 14.4 12 22 12 22Z"/><circle cx="12" cy="9.5" r="2.4"/></svg>
-          Lanús, Buenos Aires, Argentina
+          José Mármol, Buenos Aires, Argentina
         </span>
       </div>
     </div>
@@ -220,8 +322,8 @@
         <label>Método</label>
         <div class="radio-group">
           <label class="radio-option">
-            <input type="radio" name="method" value="Retiro en Lanús" checked />
-            <span class="radio-option-text"><strong>Retiro en Lanús</strong><span>Coordinamos día y horario</span></span>
+            <input type="radio" name="method" value="Retiro en José Mármol" checked />
+            <span class="radio-option-text"><strong>Retiro en José Mármol</strong><span>Coordinamos día y horario</span></span>
           </label>
           <label class="radio-option">
             <input type="radio" name="method" value="Envío a coordinar" />
